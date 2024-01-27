@@ -1,58 +1,56 @@
-
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const CountdownTimer = () => {
   const navigate = useNavigate();
 
-  const [countdown, setCountdown] = useState({
-    days: 5,
-    hours: 3,
-    minutes: 23,
-    seconds: 53,
-  });
-
   const [showComponent, setShowComponent] = useState(true);
 
+  const calculateTimeRemaining = () => {
+    // Set the target date in the Nigerian time zone (UTC+1)
+    const targetDate = new Date();
+    targetDate.setDate(targetDate.getDate() + 5);
+    targetDate.setHours(0, 0, 0, 0);
+    const targetDateString = targetDate.toLocaleString('en-US', { timeZone: 'Africa/Lagos' });
+
+    const currentDate = new Date();
+    const currentDateString = currentDate.toLocaleString('en-US', { timeZone: 'Africa/Lagos' });
+
+    const timeDifference = new Date(targetDateString) - new Date(currentDateString);
+
+    if (timeDifference > 0) {
+      const seconds = Math.floor((timeDifference / 1000) % 60);
+      const minutes = Math.floor((timeDifference / (1000 * 60)) % 60);
+      const hours = Math.floor((timeDifference / (1000 * 60 * 60)) % 24);
+      const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+
+      return {
+        days,
+        hours,
+        minutes,
+        seconds,
+      };
+    } else {
+      // If the target date has passed, return a specific format
+      return {
+        days: 0,
+        hours: 0,
+        minutes: 0,
+        seconds: 0,
+        expired: true,
+      };
+    }
+  };
+
+  const [timeRemaining, setTimeRemaining] = useState(calculateTimeRemaining());
+
   useEffect(() => {
-    const intervalId = setInterval(() => {
-      // Update countdown every second
-      setCountdown((prevCountdown) => {
-        let { days, hours, minutes, seconds } = prevCountdown;
-
-        if (seconds === 0) {
-          if (minutes === 0) {
-            if (hours === 0) {
-              if (days === 0) {
-                // Countdown finished, you can perform any action here
-                clearInterval(intervalId);
-              } else {
-                days -= 1;
-                hours = 23;
-                minutes = 59;
-                seconds = 59;
-              }
-            } else {
-              hours -= 1;
-              minutes = 59;
-              seconds = 59;
-            }
-          } else {
-            minutes -= 1;
-            seconds = 59;
-          }
-        } else {
-          seconds -= 1;
-        }
-
-        return { days, hours, minutes, seconds };
-      });
+    const interval = setInterval(() => {
+      setTimeRemaining(calculateTimeRemaining());
     }, 1000);
 
-    return () => clearInterval(intervalId); // Cleanup on component unmount
-  }, []); // Empty dependency array to run the effect only once
-
-  const formatTime = (value) => (value < 10 ? `0${value}` : value);
+    return () => clearInterval(interval);
+  }, []);
 
   const handleHideComponent = () => {
     setShowComponent(false);
@@ -61,19 +59,22 @@ const CountdownTimer = () => {
   if (!showComponent) {
     return null; // Do not render the component
   }
-
   return (
     <div className="flex flex-col md:flex-row justify-center items-center space-x-10 bg-black text-white p-4 text-center">
       <p className="text-xl font-bold mb-2">Hurry up! Sale ends in:</p>
       <div className="flex-col">
         <p className="text-2xl font-bold text-red-700">
-          {`${formatTime(countdown.days)} : ${formatTime(countdown.hours)} : ${formatTime(
-            countdown.minutes
-          )} : ${formatTime(countdown.seconds)}`}
+          {timeRemaining.expired
+            ? '00:00:00:00'
+            : `${timeRemaining.days < 10 ? '0' : ''}${timeRemaining.days} : ${
+                timeRemaining.hours < 10 ? '0' : ''
+              }${timeRemaining.hours} : ${timeRemaining.minutes < 10 ? '0' : ''}${
+                timeRemaining.minutes
+              } : ${timeRemaining.seconds < 10 ? '0' : ''}${timeRemaining.seconds}`}
         </p>
 
         <div className="justify-center items-end flex space-x-6 font-semibold">
-          <span className="text-white">Days</span>
+          <span className="text-white">{timeRemaining.days > 0 ? 'Days' : 'day'}</span>
           <span className="text-white">Hrs</span>
           <span className="text-white">Mins</span>
           <span className="text-white">Secs</span>
@@ -83,18 +84,13 @@ const CountdownTimer = () => {
         className="bg-red-700 text-white px-4 py-4 mt-2 hover:bg-red-800 rounded-lg m font-semibold"
         onClick={() => navigate('/buy-token')}
       >
-        Buy Now !
+        Buy Now!
       </button>
-      <button
-        className="absolute top-2 right-2 font-bold text-gray-200 text-base "
-        onClick={handleHideComponent}
-      >
-        X
-      </button>
+      <button className="absolute top-2 right-2 font-bold text-gray-200 text-base"
+             onClick={handleHideComponent}
+      >X</button>
     </div>
   );
 };
 
 export default CountdownTimer;
-
-
