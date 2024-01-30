@@ -14,7 +14,9 @@ import Faqs from './Faqs';
 import Roadmap from './Roadmap';
 import Adse from './Adse';
 import Footer from './Footer';
-import CountdownTimer  from './CountdownTimer';
+import CountdownTimer from './CountdownTimer';
+
+
 
 const Layout = () => {
  

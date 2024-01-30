@@ -4,9 +4,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import DarkModeToggle from "./DarkModeToggle";
+import { useTranslation } from "react-i18next";
 
 const AppNav = () => {
   const [isNavOpen, setIsNavOpen] = useState(false);
+  const { t } = useTranslation();
 
   function toggleNav() {
     setIsNavOpen(!isNavOpen);
@@ -44,7 +46,7 @@ const AppNav = () => {
                     href="#about"
                     className="text-lg sm:text-xl lg:text-sm xl:text-base 3xl:text-[17px] text-white lg:text-light_black lg:hover:text-blue font-medium after:absolute after:w-0 after:hover:w-full after:duration-300 after:bottom-[-2px] after:left-0  after:hover:bg-blue after:bg-black after:h-[1.5px] after:rounded-full relative"
                   >
-                    ABOUT
+                  {t('nav1')}
                   </a>
                 </li>
                 <li>
@@ -52,7 +54,7 @@ const AppNav = () => {
                     href="#service"
                     className="text-lg sm:text-xl lg:text-sm xl:text-base 3xl:text-[17px] text-white lg:text-light_black lg:hover:text-blue font-medium after:absolute after:w-0  after:hover:w-full after:duration-300 after:bottom-[-2px] after:left-0 after:hover:bg-blue  after:bg-black after:h-[1.5px] after:rounded-full relative"
                   >
-                    SERVICES
+                     {t('nav2')}
                   </a>
                 </li>
                 <li>
@@ -60,7 +62,7 @@ const AppNav = () => {
                     href="#roadmap"
                     className="text-lg sm:text-xl lg:text-sm xl:text-base 3xl:text-[17px] text-white lg:text-light_black lg:hover:text-blue font-medium after:absolute after:w-0  after:hover:w-full after:duration-300 after:bottom-[-2px] after:left-0 after:hover:bg-blue  after:bg-black after:h-[1.5px] after:rounded-full relative"
                   >
-                    ROADMAP
+                    {t('nav3')}
                   </a>
                 </li>
                 <li>
@@ -68,7 +70,7 @@ const AppNav = () => {
                     href="#team"
                     className="text-lg sm:text-xl lg:text-sm xl:text-base 3xl:text-[17px] text-white lg:text-light_black lg:hover:text-blue font-medium after:absolute after:w-0  after:hover:w-full after:duration-300 after:bottom-[-2px] after:left-0 after:hover:bg-blue  after:bg-black after:h-[1.5px] after:rounded-full relative"
                   >
-                    TEAM
+                      {t('nav4')}
                   </a>
                 </li>
                 <li>
@@ -76,12 +78,12 @@ const AppNav = () => {
                     href="#faq"
                     className="text-lg sm:text-xl lg:text-sm xl:text-base 3xl:text-[17px] text-white lg:text-light_black lg:hover:text-blue font-medium after:absolute after:w-0  after:hover:w-full after:duration-300 after:bottom-[-2px] after:left-0 after:hover:bg-blue  after:bg-black after:h-[1.5px] after:rounded-full relative"
                   >
-                    FAQs
+                      {t('nav5')}
                   </a>
                 </li>
                 <li>
                   <Link to='/buy-token' className="lg:hidden whitespace-nowrap bg-common-gradient text-white font-bold py-3 px-8 2xl:px-11 rounded-[36px] after:absolute after:w-full  after:hover:w-full after:duration-300 after:top-0 after:z-10 after:left-0   after:h-full relative">
-                    BUY TOKEN
+                  {t('nav6')}
                   </Link>
                 </li>
               </ul>
@@ -93,7 +95,7 @@ const AppNav = () => {
                 />
               </button>
               <Link to='/buy-token'  className="hidden lg:flex items-center justify-center whitespace-nowrap bg-white hover:text-blue text-white border-2 border-blue font-bold py-3 px-8 2xl:px-11 rounded-[36px] relative after:absolute after:bg-common-gradient after:top-0 after:left-0 after:rounded-[36px] w-[200px] overflow-hidden after:hover:-left-full transition-all after:duration-300 ease-in-out after:z-[-1] z-[4] after:w-full after:h-full">
-                BUY TOKEN
+              {t('nav6')}
               </Link>
 
               {/* <DarkModeToggle/> */}

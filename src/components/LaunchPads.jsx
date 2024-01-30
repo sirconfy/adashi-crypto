@@ -4,6 +4,7 @@ import { CorePartnerData, LaunchPadData } from "../common/Helper";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
+import { useTranslation} from "react-i18next";
 
 const LaunchPads = () => {
   var settings = {
@@ -43,15 +44,18 @@ const LaunchPads = () => {
     ]
   };
 
+  const { t } = useTranslation();
+
+
   return (
     <div className=" bg-component-gradient py-[136px]">
       <div className="px-0">
         <div className="px-4">
           <h3 className="text-white text-center font-bold text-[30px] sm:text-4xl  lg:text-5xl  3xl:text-6xl">
-            Launchpads and VCs
+         {t('luanch-pad')}
           </h3>
           <p className="text-[#FEFEFE] text-center text-[15px] max-w-[691px] mx-auto">
-            Adashe continues to grow its partnership within and outside of web3.
+{t('Adashe-continues')}
           </p>
         </div>
    
@@ -65,10 +69,11 @@ const LaunchPads = () => {
                     <img className="w-[80px] 3xl:w-[106px]" src={obj.img} alt="img1" />
                     <div>
                       <h4 className="text-white text-xl font-bold">
-                       {obj.heading}
+            
+                       {t(`LaunchPadData.${obj.heading_one}`)}
                       </h4>
                       <p className="text-[#FEFEFE] text-sm pt-2">
-                        {obj.detail}
+                      {t(`LaunchPadData.${obj.detail_one}`)}
                       </p>
                     </div>
                   </div>

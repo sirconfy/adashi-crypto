@@ -5,7 +5,10 @@ import {
   AccordionHeader,
   AccordionBody,
 } from "@material-tailwind/react";
+import { useTranslation } from "react-i18next";
+
 function Icon({ id, open }) {
+  
   return (
     <svg
       className={`${
@@ -24,7 +27,7 @@ function Icon({ id, open }) {
 
 const Faqs = () => {
   const [open, setOpen] = React.useState(0);
-
+  const { t } = useTranslation();
   const handleOpen = (value) => setOpen(open === value ? 0 : value);
 
   const [openFaqIndex, setOpenFaqIndex] = useState(null);
@@ -43,7 +46,7 @@ const Faqs = () => {
       className="container px-4 md:px-6 xl:px-0 xl:max-w-[1140px] 3xl:max-w-[1580px]  mx-auto md:pb-10 xl:pb-[50px]"
     >
       <h3 className="text-blue text-center font-bold text-[30px] sm:text-4xl lg:text-5xl  3xl:text-6xl mb-10">
-        FAQs
+       {t('faq')}
       </h3>
       <div className="flex flex-wrap justify-center">
         <div className="max-w-[1100px] sm:px-4">
@@ -58,10 +61,12 @@ const Faqs = () => {
                   className=" border border-[#dcdcdc] py-[17px] sm:ps-[30px] px-2 text-left sm:pe-[23px] rounded-[10px] text-[13px] sm:text-lg text-light_gray3 font-normal mb-4"
                   onClick={() => handleOpen(index)}
                 >
-                  {obj.heading}
+                     {t(`FaqData.${obj.heading}`)}
+              
                 </AccordionHeader>
                 <AccordionBody className=" px-4 sm:px-10 text-[#4c4b4b] leading-[32px] text-xs sm:text-base pb-6 pt-0 sm:py-6">
-                  <div dangerouslySetInnerHTML={{ __html: obj.detail }} />
+                  <div dangerouslySetInnerHTML={{ __html: t(`FaqData.${obj.detail}`)}} />
+                  
                 </AccordionBody>
               </Accordion>
             ))}

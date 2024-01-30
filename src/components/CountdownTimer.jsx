@@ -7,28 +7,24 @@ const CountdownTimer = () => {
   const [showComponent, setShowComponent] = useState(true);
 
   const calculateTimeRemaining = () => {
-    // Set the target date in the Nigerian time zone (UTC+1)
-    const targetDate = new Date();
-    targetDate.setDate(targetDate.getDate() + 5);
-    targetDate.setHours(0, 0, 0, 0);
-    const targetDateString = targetDate.toLocaleString('en-US', { timeZone: 'Africa/Lagos' });
-
+    // Set the target date to January 31st
+    const targetDate = new Date('2024-01-31T00:00:00Z');
     const currentDate = new Date();
-    const currentDateString = currentDate.toLocaleString('en-US', { timeZone: 'Africa/Lagos' });
 
-    const timeDifference = new Date(targetDateString) - new Date(currentDateString);
+    const timeDifference = targetDate - currentDate;
 
     if (timeDifference > 0) {
       const seconds = Math.floor((timeDifference / 1000) % 60);
       const minutes = Math.floor((timeDifference / (1000 * 60)) % 60);
       const hours = Math.floor((timeDifference / (1000 * 60 * 60)) % 24);
-      const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+      const days = Math.ceil(timeDifference / (1000 * 60 * 60 * 24)); // Round up to the nearest whole day
 
       return {
         days,
         hours,
         minutes,
         seconds,
+        expired: false,
       };
     } else {
       // If the target date has passed, return a specific format
@@ -59,6 +55,7 @@ const CountdownTimer = () => {
   if (!showComponent) {
     return null; // Do not render the component
   }
+
   return (
     <div className="flex flex-col md:flex-row justify-center items-center space-x-10 bg-black text-white p-4 text-center">
       <p className="text-xl font-bold mb-2">Hurry up! Sale ends in:</p>
@@ -86,9 +83,12 @@ const CountdownTimer = () => {
       >
         Buy Now!
       </button>
-      <button className="absolute top-2 right-2 font-bold text-gray-200 text-base"
-             onClick={handleHideComponent}
-      >X</button>
+      <button
+        className="absolute top-2 right-2 font-bold text-gray-200 text-base"
+        onClick={handleHideComponent}
+      >
+        X
+      </button>
     </div>
   );
 };

@@ -4,6 +4,8 @@ import { CorePartnerData } from "../common/Helper";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
+import { useTranslation } from "react-i18next";
+
 
 const CorePartner = () => {
   var settings = {
@@ -42,16 +44,16 @@ const CorePartner = () => {
       }
     ]
   };
-
+  const { t } = useTranslation();
   return (
     <div className=" bg-component-gradient py-[136px] overflow-y-scroll max-h-screen">
       <div className="px-0">
         <div className="px-4">
           <h3 className="text-white text-center font-bold text-[30px] sm:text-4xl  lg:text-5xl  3xl:text-6xl">
-            Project Partners
+          {t('Project-Partners')}
           </h3>
           <p className="text-[#FEFEFE] text-center text-[15px] max-w-[691px] mx-auto">
-            Adashe continues to grow its partnership within and outside of web3.
+{t('Project-body')}
           </p>
         </div>
    
@@ -65,10 +67,12 @@ const CorePartner = () => {
                     <img className="w-[80px] 3xl:w-[106px]" src={obj.img} alt="img1" />
                     <div>
                       <h4 className="text-white text-xl font-bold">
-                       {obj.heading}
+                      
+                       {t(`CorePartnerData.${obj.heading}`)}
                       </h4>
                       <p className="text-[#FEFEFE] text-sm pt-2">
-                        {obj.detail}
+
+                        {t(`CorePartnerData.${obj.detail}`)}
                       </p>
                     </div>
                   </div>

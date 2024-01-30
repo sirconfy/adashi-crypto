@@ -12,14 +12,25 @@ import emailjs, { init } from "@emailjs/browser";
 import LoaderSpiner from "./LoaderSpiner";
 import Swal from "sweetalert2";
 import { Telegram } from "../common/Icons";
+import { useTranslation } from "react-i18next";
 init("f4rTZbXETdkVNwJVR");
-const Footer = ({ selectedLanguage, handleLanguageChange}) => {
+
+const Footer = () => {
+  const { t } = useTranslation();
   const initialState = {
     email: "",
   };
   const [letsCreate, setLetsCreate] = useState(initialState);
   const [isLoader, setLoader] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false); 
+
+  const titleText = t('title-swal');
+  const text = t('text-swal');
+  const confirmButtonText = t('confirmButtonText');
+ const error = t('error');
+ const textError = t('error-text');
+ const confrimErrorBtn = t('confirmButtonText-error');
+
   const handleSubmitLetsCreate = (event) => {
     event.preventDefault();
     setLoader(true);
@@ -36,25 +47,26 @@ const Footer = ({ selectedLanguage, handleLanguageChange}) => {
           setIsSubmitting(false);
           Swal.fire({
             icon: "success",
-                  title: "Thanks for subscribing!",
-            text: "we will get in touch with you soon.",
+            title: titleText,
+            text: text,
             // icon: "error",
-            confirmButtonText: "ThankYou",
+            confirmButtonText: confirmButtonText,
           });
         },
         (error) => {
           setIsSubmitting(false);
           Swal.fire({
-            title: "Error!",
-            text: "Do you want to continue",
+            title: error ,
+            text: textError ,
             icon: "error",
-            confirmButtonText: "Cool",
+            confirmButtonText: confrimErrorBtn,
           });
           setLoader(false);
           console.log(error);
         }
       );
   };
+
   return (
     <>
       <div className="bg-[#f5f9ff]">
@@ -67,9 +79,7 @@ const Footer = ({ selectedLanguage, handleLanguageChange}) => {
                 alt="footer-Logo"
               />
               <p className="font-medium text-lg text-dark_gray pt-4 md:pt-0">
-              Project Adashe is building a system for data federation and
-              virtualization, tied to a smart contract it can enable automatic
-              execution of commands.
+               {t('footer-text')}
               <div className="pt-5 gap-4 flex items-center">
                 {/* Twitter Link */}
                 <a
@@ -117,14 +127,14 @@ const Footer = ({ selectedLanguage, handleLanguageChange}) => {
               <div className="flex w-full  max-w-[600px]:flex-wrap justify-between  ">
                 <ul className="pt-6 sm:pt-0 flex-1">
                   <li className="text-lg text-dark_blue4 font-medium">
-                    SITEMAP
+                  {t('SITEMAP')}
                   </li>
                   <li className="pt-4 hover:translate-x-1 duration-300 hover:opacity-40">
                     <a
                       href="../#about"
                       className="text-base text-dark_black2 font-medium "
                     >
-                      About
+                    {t('About')}
                     </a>
                   </li>
                   <li className="pt-4 hover:translate-x-1 duration-300 hover:opacity-40">
@@ -132,7 +142,7 @@ const Footer = ({ selectedLanguage, handleLanguageChange}) => {
                       href="../#service"
                       className="text-base text-dark_black2 font-medium"
                     >
-                      Services{" "}
+                      {t('Services')}{" "}
                     </a>
                   </li>
                   <li className="pt-4 hover:translate-x-1 duration-300 hover:opacity-40">
@@ -140,7 +150,7 @@ const Footer = ({ selectedLanguage, handleLanguageChange}) => {
                       href="../#roadmap"
                       className="text-base text-dark_black2 font-medium"
                     >
-                      Roadmap
+                      {t('Roadmap-t')}
                     </a>
                   </li>
                   <li className="pt-4 hover:translate-x-1 duration-300 hover:opacity-40">
@@ -148,20 +158,20 @@ const Footer = ({ selectedLanguage, handleLanguageChange}) => {
                       href="../#team"
                       className="text-base text-dark_black2 font-medium"
                     >
-                      Team
+                      {t('Team-1')}
                     </a>
                   </li>
                 </ul>
                 <ul className="pt-6 sm:pt-0 flex-1">
                   <li className="text-lg text-dark_blue4 font-medium">
-                    COMPANY
+                   {t('COMPANY')}
                   </li>
                   <li className="pt-4 hover:translate-x-1 duration-300 hover:opacity-40">
                     <a
                       href="https://adashe.io"
                       className="text-base text-dark_black2 font-medium "
                     >
-                      Privacy Policy
+                   {t('Privacy-Policy')}
                     </a>
                   </li>
                   {/* <li className="pt-4 hover:translate-x-1 duration-300 hover:opacity-40">
@@ -177,7 +187,7 @@ const Footer = ({ selectedLanguage, handleLanguageChange}) => {
                       href="../#news"
                       className="text-base text-dark_black2 font-medium "
                     >
-                      Latest News
+                      {t('Latest-News')}
                     </a>
                   </li>
                   <li className="pt-4 hover:translate-x-1 duration-300 hover:opacity-40">
@@ -185,13 +195,13 @@ const Footer = ({ selectedLanguage, handleLanguageChange}) => {
                       href="../#faq"
                       className="text-base text-dark_black2 font-medium "
                     >
-                      FAQs
+                      {t('FAQs-1')}
                     </a>
                   </li>
                 </ul>
                 <ul className="pt-6  sm:pt-0 flex-1 sm:flex-none">
                   <li className="text-lg text-dark_blue4 font-medium">
-                    KYC & AUDIT
+                   {t('k-y')}
                   </li>
                   {/* <li className="flex items-center sm:justify-start pt-4 group">
                     <img src={abujaNigeria} alt="Abuja-Nigeria" />
@@ -224,7 +234,7 @@ const Footer = ({ selectedLanguage, handleLanguageChange}) => {
               />
               <p className="hidden md:block pt-2.5 text-base md:text-xl text-dark_gray first-letter font-medium">
                 {" "}
-                © {new Date().getFullYear()} adashe
+                © {new Date().getFullYear()} {t('adashe')}
               </p>
 
           
@@ -234,7 +244,7 @@ const Footer = ({ selectedLanguage, handleLanguageChange}) => {
               <div className="md:flex md:justify-end">
                 <div>
                   <p className="text-lg md:text-[21px] text-[#7c7a7a] font-medium">
-                    Join Our Newsletter
+                   {t('news-letter')}
                   </p>
                   <form
                     onSubmit={(event) => handleSubmitLetsCreate(event)}
@@ -250,15 +260,15 @@ const Footer = ({ selectedLanguage, handleLanguageChange}) => {
                         })
                       }
                       type="email"
-                      placeholder="Your email address"
+                      placeholder={t('placeholder')}
                       className="text-sm outline-none w-full pl-3.5 py-3"
                     />
                     <button  disabled={isSubmitting} className="py-[13px] px-9 text-white bg-common-gradient text-base rounded-[28px]">
-                      {isLoader ? <LoaderSpiner /> : " Subscribe"}   
+                    {isLoader ? <LoaderSpiner /> : <span>{t('Subscribe')}</span>}
                     </button>
                   </form>
                   <p className="text-sm text-[#7c7a7a] font-medium">
-                    * Will send you weekly updates for your better engagement.
+                  {t('weekly-update')}
                   </p>
                 </div>
               </div>
