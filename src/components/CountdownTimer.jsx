@@ -72,7 +72,7 @@ const CountdownTimer = () => {
         </p>
 
         <div className="justify-center items-end flex space-x-6 font-semibold">
-          <span className="text-white">{timeRemaining.days > 0 ? 'Days' : 'day'}</span>
+          <span className="text-white">{timeRemaining.days > 0 ? t('Days') : t('Day')}</span>
           <span className="text-white">{t('Hrs')}</span>
           <span className="text-white">{t('Mins')}</span>
           <span className="text-white">{t('Secs')}</span>
