@@ -193,7 +193,12 @@
 "confirmButtonText": "ThankYou",
 "error": "Error!",
 "error-text": "Do you want to continue",
-"confirmButtonText-error": "Cool"
+"confirmButtonText-error": "Cool",
+"count-h1": "Hurry up! Sale Starts in",
+"Hrs": "Hrs",
+"Mins": "Mins",
+"Secs": "Secs",
+"buy": " Buy Now!"
 }
 
 

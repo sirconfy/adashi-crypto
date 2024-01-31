@@ -192,6 +192,12 @@
 "confirmButtonText": "谢谢",
 "error": "错误！",
 "error-text": "你想继续吗",
-"confirmButtonText-error": "凉爽的"
+"confirmButtonText-error": "凉爽的",
+"count-h1": "赶快！销售开始于",
+"Hrs": "小时",
+"Mins": "分钟",
+"Secs": "秒",
+"buy": "立即购买！"
+   
 
   }

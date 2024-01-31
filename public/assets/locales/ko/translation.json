@@ -193,7 +193,13 @@
 "confirmButtonText": "감사합니다",
 "error": "오류!",
 "error-text": "계속하시겠습니까?",
-"confirmButtonText-error": "시원한"
+"confirmButtonText-error": "시원한",
+"count-h1": "서둘러요! 판매 시작일",
+"Hrs": "시간",
+"Mins": "분",
+"Secs": "초",
+"buy": "지금 구매하세요!"
+   
   }
   
   

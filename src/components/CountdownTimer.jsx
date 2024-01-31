@@ -1,3 +1,4 @@
+import { t } from 'i18next';
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -58,7 +59,7 @@ const CountdownTimer = () => {
 
   return (
     <div className="flex flex-col md:flex-row justify-center items-center space-x-10 bg-black text-white p-4 text-center">
-      <p className="text-xl font-bold mb-2">Hurry up! Sale ends in:</p>
+      <p className="text-xl font-bold mb-2">{t('count-h1')}:</p>
       <div className="flex-col">
         <p className="text-2xl font-bold text-red-700">
           {timeRemaining.expired
@@ -72,16 +73,16 @@ const CountdownTimer = () => {
 
         <div className="justify-center items-end flex space-x-6 font-semibold">
           <span className="text-white">{timeRemaining.days > 0 ? 'Days' : 'day'}</span>
-          <span className="text-white">Hrs</span>
-          <span className="text-white">Mins</span>
-          <span className="text-white">Secs</span>
+          <span className="text-white">{t('Hrs')}</span>
+          <span className="text-white">{t('Mins')}</span>
+          <span className="text-white">{t('Secs')}</span>
         </div>
       </div>
       <button
         className="bg-red-700 text-white px-4 py-4 mt-2 hover:bg-red-800 rounded-lg m font-semibold"
         onClick={() => navigate('/buy-token')}
       >
-        Buy Now!
+   {t('buy')}
       </button>
       <button
         className="absolute top-2 right-2 font-bold text-gray-200 text-base"
